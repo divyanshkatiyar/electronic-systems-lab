@@ -4,9 +4,9 @@
 
 <p align="center">
   <img
-    src="class-ab-push-pull-amplifier/1794987323326.png"
+    src="./1794987323326.png"
     alt="Two-Stage Class AB Push-Pull Audio Amplifier"
-    width="800"
+    width="850"
   />
 </p>
 
