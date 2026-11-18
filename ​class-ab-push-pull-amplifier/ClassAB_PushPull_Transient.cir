@@ -1,0 +1,55 @@
+* Two-Stage Class AB Push-Pull Audio Amplifier
+* LTspice transient-analysis netlist
+* Topology transcribed from the supplied schematic.
+*
+* IMPORTANT:
+* - The transistor models below are generic first-pass models, not vendor-qualified
+*   models for every BC550C / BC337 / BC327 manufacturer or gain grade.
+* - R_SOURCE_OHMS is a 600-ohm test-source assumption, not a component in the
+*   amplifier schematic. Change it to match your audio source (or use 0 for ideal).
+* - VAMP is the peak input sine amplitude. Start small; increase only after
+*   checking clipping, bias current and transistor dissipation.
+
+.param R_SOURCE_OHMS=600
+.param VAMP=1m
+
+VCC VCC 0 DC 9
+VSIG SIG 0 DC 0 SINE(0 {VAMP} 1k)
+R_SOURCE SIG NIN {R_SOURCE_OHMS}
+
+* Input and feedback network
+CIN NIN NB1 10u
+RF NB2 NB1 150k
+RC VCC NB2 330
+
+* Differential bias path / first-stage collector connection
+D1 NB2 NDMID D1N4007
+D2 NDMID NC1 D1N4007
+Q1 NC1 NB1 0 BC550C
+
+* Complementary Class-AB emitter-follower output stage
+Q2 VCC NB2 OUT BC337
+Q3 0 NC1 OUT BC327
+
+* Output coupling and 16-ohm load
+COUT OUT SPK 220u
+RL SPK 0 16
+
+* Generic educational models: replace with manufacturer models for final validation.
+.model BC550C NPN (IS=2.0e-14 BF=500 VAF=100 IKF=0.10 RB=50 RC=1 RE=0.5 CJE=12p CJC=5p TF=0.5n TR=50n)
+.model BC337  NPN (IS=1.0e-14 BF=250 VAF=60 IKF=0.50 RB=20 RC=0.5 RE=0.2 CJE=40p CJC=20p TF=0.6n TR=100n)
+.model BC327  PNP (IS=1.0e-14 BF=250 VAF=60 IKF=0.50 RB=20 RC=0.5 RE=0.2 CJE=40p CJC=20p TF=0.6n TR=100n)
+.model D1N4007 D (IS=1.10e-8 N=1.78 RS=0.0414 CJO=28p VJ=0.508 M=0.319 TT=9.85u BV=1000 IBV=0.1)
+
+.options plotwinsize=0
+.temp 27
+.tran 0 100m 0 5u
+
+* Measurements over the final 50 ms (after startup transients)
+.meas TRAN VIN_RMS  RMS V(NIN) FROM=50m TO=100m
+.meas TRAN VOUT_RMS RMS V(SPK) FROM=50m TO=100m
+.meas TRAN VOUT_PP  PP  V(SPK) FROM=50m TO=100m
+
+* Plot V(OUT) to inspect the biased transistor output node.
+* Plot V(SPK) to inspect the AC signal delivered to the load.
+.end
