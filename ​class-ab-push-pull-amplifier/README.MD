@@ -1,9 +1,9 @@
-# Two-Stage Class AB Push-Pull Audio Amplifier
+# 🔈 Two-Stage Class AB Push-Pull Audio Amplifier
 
 ## 1. Circuit Overview
 This project implements a discrete, two-stage Class AB complementary push-pull audio power amplifier powered by a single-supply $+9\text{ V}$ DC rail[span_0](start_span)[span_0](end_span). The architecture combines a Class A common-emitter voltage amplifier stage ($Q_1$) with a diode-biased Class AB emitter-follower output stage ($Q_2$, $Q_3$) driving a $16\ \Omega$ speaker load[span_1](start_span)[span_1](end_span).
 
-### Functional Blocks
+### 🎛 Functional Blocks
 * **Input Coupling ($C_{\text{in}}$):** AC-couples the incoming audio signal while blocking DC offset from the input source[span_2](start_span)[span_2](end_span). Note: In practical implementation, ensure the positive terminal of the $10\ \mu\text{F}$ electrolytic capacitor faces the base of $Q_1$ if the input source is ground-referenced, as $V_{B1} \approx +0.65\text{ V}$.
 * **Pre-Amplifier & Voltage Gain Stage ($Q_1$, $R_c$, $R_f$):** $Q_1$ (BC550C NPN) operates in a common-emitter configuration with collector-to-base shunt feedback ($R_f = 150\text{ k}\Omega$) to stabilize the DC operating point and provide voltage amplification[span_3](start_span)[span_3](end_span).
 * **Thermal & Crossover Bias Network ($D_1$, $D_2$):** Two series silicon diodes (1N4007) establish a constant voltage drop ($\approx 1.3\text{ V}$ to $1.4\text{ V}$) between the bases of $Q_2$ and $Q_3$[span_4](start_span)[span_4](end_span). This pre-biases both output transistors into slight conduction, eliminating crossover distortion.
@@ -12,7 +12,7 @@ This project implements a discrete, two-stage Class AB complementary push-pull a
 
 ---
 
-## 2. Bill of Materials (BOM)
+## 2. 🛠 Component Stack
 
 | Designator | Component | Value / Part Number | Specifications / Notes |
 | :--- | :--- | :--- | :--- |
@@ -29,7 +29,7 @@ This project implements a discrete, two-stage Class AB complementary push-pull a
 
 ---
 
-## 3. Mathematical Circuit Analysis
+## 3. ⚙️ Mathematical Circuit Analysis
 
 ### Standard Component Assumptions
 * Supply Voltage ($V_{CC}$): $9.0\text{ V}$[span_20](start_span)[span_20](end_span)
@@ -171,7 +171,7 @@ This project implements a discrete, two-stage Class AB complementary push-pull a
 
 ---
 
-## 4. Summary of Key Performance Metrics
+## 4. ⚡️ Summary of Key Performance Metrics
 
 | Parameter | Calculated Value | Unit |
 | :--- | :--- | :--- |
