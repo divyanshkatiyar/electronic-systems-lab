@@ -1,7 +1,5 @@
 # 🔈 Two-Stage Class AB Push-Pull Audio Amplifier
 
-<h2>Class AB Push-Pull Audio Amplifier</h2>
-
 <p align="center">
   <img
     src="./1794987323326.png"
