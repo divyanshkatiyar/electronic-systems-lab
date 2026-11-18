@@ -1,6 +1,6 @@
 # 🔈 Two-Stage Class AB Push-Pull Audio Amplifier
 
-## 1. Circuit Overview
+## 1. 📚 Circuit Overview
 This project implements a discrete, two-stage Class AB complementary push-pull audio power amplifier powered by a single-supply $+9\text{ V}$ DC rail[span_0](start_span)[span_0](end_span). The architecture combines a Class A common-emitter voltage amplifier stage ($Q_1$) with a diode-biased Class AB emitter-follower output stage ($Q_2$, $Q_3$) driving a $16\ \Omega$ speaker load[span_1](start_span)[span_1](end_span).
 
 ### 🎛 Functional Blocks
